@@ -1,213 +1,247 @@
-# Bday-of-lallu
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Erumaaa 🫶🏻</title>
+<title>For My Erumaaa 🫶🏻</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    text-align: center;
-    overflow-x: hidden;
-    color: #333;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
 }
 
-/* Floating Hearts */
-.heart {
-    position: fixed;
-    bottom: -10px;
-    font-size: 20px;
-    animation: floatUp 6s linear infinite;
+/* ===== COMMON PAGE STYLE ===== */
+.page{
+  position:absolute;
+  width:100%;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-100vh); opacity: 0; }
+/* ===== PAGE 1 ===== */
+#page1{
+  background:#f8c8dc;
+  cursor:pointer;
 }
 
-/* Title Glow */
-h1 {
-    margin-top: 60px;
-    font-size: 3rem;
-    animation: glow 2s infinite alternate;
+.gift{
+  width:180px;
+  height:180px;
+  background:#f5e6d3;
+  position:relative;
+  opacity:0;
+  animation:fadeIn 2s forwards;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #ff4e50; }
-    to { text-shadow: 0 0 25px #ff004f; }
+.lid{
+  width:180px;
+  height:40px;
+  background:#800000;
+  position:absolute;
+  top:-40px;
 }
 
-.subtitle {
-    opacity: 0.8;
-    margin-bottom: 30px;
+.ribbon-vertical{
+  width:30px;
+  height:180px;
+  background:#800000;
+  position:absolute;
+  left:75px;
 }
 
-.card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 600px;
-    margin: 40px auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    line-height: 1.6;
+.ribbon-horizontal{
+  width:180px;
+  height:30px;
+  background:#800000;
+  position:absolute;
+  top:75px;
 }
 
-button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    background: #ff4e50;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+.message{
+  margin-top:40px;
+  font-size:28px;
+  opacity:0;
+  animation:fadeIn 3s forwards;
+  animation-delay:2s;
 }
 
-button:hover {
-    background: #e63c3f;
+/* ===== PAGE 2 ===== */
+#page2{
+  background:#ffe6f0;
+  display:none;
+  cursor:pointer;
+  overflow:hidden;
 }
 
-.hidden {
-    display: none;
+.plane{
+  position:absolute;
+  font-size:22px;
+  padding:10px 20px;
+  background:white;
+  border-radius:30px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  transition:1s ease;
 }
 
-/* Gallery */
-.gallery img {
-    width: 100%;
-    border-radius: 15px;
+#plane1{ left:-300px; top:30%; }
+#plane2{ right:-300px; top:50%; }
+#plane3{ bottom:-200px; left:40%; }
+
+.flyLeft{ left:40%; }
+.flyRight{ right:40%; }
+.flyUp{ bottom:40%; }
+
+.exitLeft{ left:-400px; }
+.exitRight{ right:-400px; }
+.exitUp{ bottom:-300px; }
+
+/* ===== PAGE 3 ===== */
+#page3{
+  background:#f8c8dc;
+  display:none;
 }
 
-footer {
-    margin-top: 60px;
-    padding: 20px;
-    opacity: 0.6;
+.envelope{
+  width:300px;
+  height:200px;
+  background:#f5e6d3;
+  position:relative;
+  transform:scale(0);
+  animation:zoomIn 1.5s forwards;
+  cursor:pointer;
+}
+
+.flap{
+  width:100%;
+  height:100px;
+  background:#e5d3bd;
+  position:absolute;
+  top:0;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transition:1s;
+  transform-origin:top;
+}
+
+.paper{
+  width:260px;
+  height:0;
+  background:white;
+  position:absolute;
+  left:20px;
+  top:60px;
+  overflow:hidden;
+  text-align:center;
+  padding:0 10px;
+  transition:1.5s;
+}
+
+.paper p{
+  margin-top:20px;
+  font-size:18px;
+}
+
+.open .flap{
+  transform:rotateX(180deg);
+}
+
+.open .paper{
+  height:180px;
+  padding-top:20px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes zoomIn{
+  to{transform:scale(1);}
 }
 </style>
 </head>
 
 <body>
 
-<h1>Happy Birthday Erumaaa 🫶🏻</h1>
-<p class="subtitle">To the cutest distraction I know.</p>
+<!-- PAGE 1 -->
+<div id="page1" class="page" onclick="goToPage2()">
+  <div class="gift">
+    <div class="lid"></div>
+    <div class="ribbon-vertical"></div>
+    <div class="ribbon-horizontal"></div>
+  </div>
 
-<!-- Countdown -->
-<div class="card">
-    <h2>Countdown to Your Day ⏳</h2>
-    <p id="countdown"></p>
+  <div class="message">
+    happy b'day my erumaaa🫶🏻🐃
+  </div>
 </div>
 
-<!-- Flirty Message -->
-<div class="card">
-    <p>Okay fine… I’ll say it.</p>
-    <p><b>Happy Birthday, Erumaaa 🫶🏻</b></p>
 
-    <p>
-        I was going to write something normal…
-        but you’re not exactly a normal person in my life.
-    </p>
+<!-- PAGE 2 -->
+<div id="page2" class="page" onclick="handleClick()">
 
-    <p>
-        It’s actually unfair how one person can look that cute,
-        act that innocent,
-        and still cause this much distraction.
-    </p>
+  <div id="plane1" class="plane">✈️ mera motti🫶🏻</div>
+  <div id="plane2" class="plane">✈️ mera buffalo 🐃🫶🏻</div>
+  <div id="plane3" class="plane">✈️ mera paagal 🫶🏻</div>
 
-    <p>
-        I hope this year gives you everything you want.
-        And maybe… gives me a little more of your time too.
-    </p>
-
-    <p>Don’t worry. I kept it classy. Mostly. 😉</p>
 </div>
 
-<!-- Photo Gallery -->
-<div class="card gallery">
-    <h2>Some of My Favorite Photos of You 🖼</h2>
-    <img id="galleryImage" src="photo1.jpg">
-    <br><br>
-    <button onclick="nextImage()">Next Photo ➡</button>
-</div>
 
-<!-- Secret Button -->
-<div class="card">
-    <button onclick="showMessage()">Click this… carefully 😌</button>
+<!-- PAGE 3 -->
+<div id="page3" class="page">
 
-    <div id="secret" class="hidden">
-        <p>No pressure. No expectations.</p>
-        <p>Just wanted to make you smile today.</p>
-        <p>
-            And if I get to be part of a few more of your birthdays…
-            I wouldn’t complain.
-        </p>
-        <p>
-            Now go enjoy your day.
-            I’ll pretend I’m not thinking about you. 🙂
-        </p>
+  <div class="envelope" onclick="openLetter(this)">
+    <div class="flap"></div>
+    <div class="paper">
+      <p>
+        Another year hotter? This is getting unfair😌.<br><br>
+        Save some attraction for the rest of the world.<br><br>
+        Happy Birthday mera motti 🫶🏻🐃.
+      </p>
     </div>
+  </div>
+
 </div>
 
-<footer>Built with intention.</footer>
-
-<!-- Background Music -->
-<audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
 
 <script>
+let count=0;
 
-/* Countdown (Set Her Birthday Date Below) */
-var countDownDate = new Date("Feb 20, 2026 00:00:00").getTime();
-
-var x = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    document.getElementById("countdown").innerHTML =
-        days + "d " + hours + "h " + minutes + "m ";
-
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("countdown").innerHTML = "It's Your Day 🎉";
-    }
-}, 1000);
-
-/* Gallery */
-var images = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
-var index = 0;
-
-function nextImage() {
-    index++;
-    if(index >= images.length) index = 0;
-    document.getElementById("galleryImage").src = images[index];
+function goToPage2(){
+  document.getElementById("page1").style.display="none";
+  document.getElementById("page2").style.display="flex";
 }
 
-/* Secret */
-function showMessage() {
-    document.getElementById("secret").classList.remove("hidden");
+function handleClick(){
+  count++;
+
+  if(count===1){
+    document.getElementById("plane1").classList.add("flyLeft");
+  }
+  else if(count===2){
+    document.getElementById("plane2").classList.add("flyRight");
+  }
+  else if(count===3){
+    document.getElementById("plane3").classList.add("flyUp");
+  }
+  else if(count===4){
+    document.getElementById("plane1").classList.add("exitLeft");
+    document.getElementById("plane2").classList.add("exitRight");
+    document.getElementById("plane3").classList.add("exitUp");
+
+    setTimeout(()=>{
+      document.getElementById("page2").style.display="none";
+      document.getElementById("page3").style.display="flex";
+    },1500);
+  }
 }
 
-/* Floating Hearts */
-setInterval(function() {
-    var heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
-}, 500);
-
+function openLetter(el){
+  el.classList.add("open");
+}
 </script>
 
 </body>
